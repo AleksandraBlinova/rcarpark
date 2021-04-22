@@ -11,14 +11,15 @@ const Cars = () => {
   
     return (
       <div>
-      <CarCreate
-      addCar={addCar}
-         />
+     
         <Car
           cars={cars}
           setCars={setCars}
           removeCar={removeCar}
         />
+        <CarCreate
+        addCar={addCar}
+           />
       </div>
     );
   };

@@ -1,7 +1,7 @@
 import './Car.css'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import Table from '../../components/Table/Table'
 
 
 const Car = ({ cars, setCars, removeCar }) => {
@@ -42,20 +42,10 @@ const Car = ({ cars, setCars, removeCar }) => {
       
         <h1 className='h1'>Модельный ряд</h1>
        
-         
             {showLoading()}
-            {cars.map(({ id,colorFkNavigation, modelFkNavigation, price,releaseYear, imageUrl}) => (
-            <div className="Car" key={id} id={id} >
-              <div>
-              <strong > {id} : {modelFkNavigation.model1}, {colorFkNavigation.color1}, {price}, {releaseYear} </strong>
-              <button className="delete-btn" onClick={(e) => deleteItem({id})}>Удалить</button>
-              </div>
-                <img src={imageUrl} className='img-car'/>
-
-            </div>
-                
-            ))}
-       
+            
+            <Table data={cars} />
+          
         </React.Fragment>
     );
 };
