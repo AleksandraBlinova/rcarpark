@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
+
 const Car = ({ cars, setCars, removeCar }) => {
     const [loading, setLoading] = useState(false);
 
@@ -25,11 +26,11 @@ const Car = ({ cars, setCars, removeCar }) => {
             });
     }, [setCars]);
 
-    const deleteItem = ({ Id }) => {
+    const deleteItem = ({ id }) => {
         //e.stopPropagation();
-        axios.delete(`https://localhost:44396/api/cars/${Id}`)
+        axios.delete(`https://localhost:44396/api/cars/${id}`)
             .then((response) => {
-                response.status = 204 ? removeCar(Id) : null;
+                response.status = 204 ? removeCar(id) : null;
             })
             .catch(console.error);
     };
@@ -38,18 +39,23 @@ const Car = ({ cars, setCars, removeCar }) => {
 
     return (
         <React.Fragment>
-            <h3>Модельный ряд</h3>
+      
+        <h1 className='h1'>Модельный ряд</h1>
+       
+         
             {showLoading()}
-            {cars.map(({ Id, url}) => (
-                <div className="Car" key={Id} id={Id} >
+            {cars.map(({ id,colorFkNavigation, modelFkNavigation, price,releaseYear, imageUrl}) => (
+            <div className="Car" key={id} id={id} >
+              <div>
+              <strong > {id} : {modelFkNavigation.model1}, {colorFkNavigation.color1}, {price}, {releaseYear} </strong>
+              <button className="delete-btn" onClick={(e) => deleteItem({id})}>Удалить</button>
+              </div>
+                <img src={imageUrl} className='img-car'/>
 
-                    <strong > {Id}: {url} </strong>
-
-                    <button onClick={(e) => deleteItem({Id})}>Удалить</button>
-
-                   
-                </div>
+            </div>
+                
             ))}
+       
         </React.Fragment>
     );
 };

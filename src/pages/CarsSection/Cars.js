@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Cars.css'
 import Car from './Car.js'
+import CarCreate from './CarCreate'
+
 
 const Cars = () => {
     const [cars, setCars] = useState([]);
@@ -9,7 +11,9 @@ const Cars = () => {
   
     return (
       <div>
-        
+      <CarCreate
+      addCar={addCar}
+         />
         <Car
           cars={cars}
           setCars={setCars}
