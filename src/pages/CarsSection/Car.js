@@ -26,7 +26,7 @@ const Car = ({ cars, setCars, removeCar }) => {
             });
     }, [setCars]);
 
-    const deleteItem = ({ id }) => {
+    const deleteItem = (id ) => {
         //e.stopPropagation();
         axios.delete(`https://localhost:44396/api/cars/${id}`)
             .then((response) => {
@@ -44,7 +44,8 @@ const Car = ({ cars, setCars, removeCar }) => {
        
             {showLoading()}
             
-            <Table data={cars} />
+            <Table  data={cars} deleteItem={deleteItem}/>
+            
           
         </React.Fragment>
     );
