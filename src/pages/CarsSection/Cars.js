@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Cars.css'
 import Car from './Car.js'
 import CarCreate from './CarCreate'
+import Footer from '../../pages/HomeSection/Footer'
 
 
 const Cars = () => {
@@ -20,6 +21,8 @@ const Cars = () => {
         <CarCreate
         addCar={addCar}
            />
+
+        <Footer />
       </div>
     );
   };

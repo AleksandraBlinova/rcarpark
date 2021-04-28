@@ -2,6 +2,8 @@ import React from 'react'
 import Info from './Info'
 import './index.css'
 import Footer from './Footer'
+import { MDBSticky, MDBStickyContent, MDBContainer } from "mdbreact";
+
 const Home = () => {
     return (
     < >

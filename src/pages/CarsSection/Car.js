@@ -2,10 +2,15 @@ import './Car.css'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Table from '../../components/Table/Table'
+import { TableSearch } from '../../components/Table/TableSearch';
+import TestTable from '../../components/Table/TestTable';
+
 
 
 const Car = ({ cars, setCars, removeCar }) => {
+    
     const [loading, setLoading] = useState(false);
+    const [search, setSearch] = useState('')
 
     useEffect(() => {
         setLoading(true);
@@ -25,6 +30,8 @@ const Car = ({ cars, setCars, removeCar }) => {
                 setLoading(false);
             });
     }, [setCars]);
+    
+     
 
     const deleteItem = (id ) => {
         //e.stopPropagation();
@@ -36,15 +43,19 @@ const Car = ({ cars, setCars, removeCar }) => {
     };
 
     const showLoading = () => (loading ? <div>Загрузка...</div> : null);
-
+      
     return (
         <React.Fragment>
       
         <h1 className='h1'>Модельный ряд</h1>
        
             {showLoading()}
-            
-            <Table  data={cars} deleteItem={deleteItem}/>
+         
+            <TableSearch
+                search={search}
+                handleChangeSearch={(value) => setSearch(value)}
+            />
+            <Table search={search} data={cars} deleteItem={deleteItem}  />
             
           
         </React.Fragment>

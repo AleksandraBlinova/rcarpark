@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+
 import './CarCreate.css'
 const CarCreate = ({ addCar }) => {
 
@@ -16,18 +17,27 @@ const CarCreate = ({ addCar }) => {
     return (
         <React.Fragment>
             <h1 className='h1'>Добавление нового авто</h1>
-            <form onSubmit={handleSubmit}>
+            <form className='form-container' onSubmit={handleSubmit}>
             <div >
             <div className='input-css'>
-            <label >Цена: </label>
+            <label className='label'>Модель: </label>
+            <input  type="text" name="model" placeholder="Выберите модель:" />
+            </div>  
+            <div className='input-css'>
+            <label className='label'>Цвет: </label>
+            <input  type="text" name="color" placeholder="Выберите цвет:" />
+            </div>  
+            <div className='input-css'>
+            <label className='label'>Цена: </label>
             <input  type="text" name="price" placeholder="Введите цену:" />
             </div>  
             <div className='input-css'>
-            <label >Год выпуска: </label>
+            <label className='label'>Год выпуска: </label>
             <input type="text" name="releaseYear" placeholder="Введите год выпуска:" />
             </div>
+            <button className='create-btn' type="submit">Создать</button>
             </div>
-                <button className='create-btn' type="submit">Создать</button>
+              
             </form>
         </React.Fragment >
     )

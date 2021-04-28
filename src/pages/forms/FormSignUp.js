@@ -2,10 +2,12 @@ import React from 'react';
 import useForm from './UseForm'
 import validate from './validateInfo'
 import './Form.css'
+import FormSignIn from './FormSignIn'
 
 const Formsignup = ({submitForm}) => {
     const {handleChange, values, handleSubmit, errors} = useForm(submitForm,validate);
     return (
+      
         <div className="form-content-right">
         <form className="form" onSubmit={handleSubmit}>
         <h1>Регистрация</h1>
@@ -73,7 +75,7 @@ const Formsignup = ({submitForm}) => {
        
         <button className="form-input-btn" type="submit">Зарегистироваться</button>
         <span className="form-input-login">
-        Уже зарегистрированы? Войдите на сайт<a href ="hjds"> здесь</a>
+        Уже зарегистрированы? Войдите на сайт<a href =""> здесь</a>
         </span>
         </form>
             
