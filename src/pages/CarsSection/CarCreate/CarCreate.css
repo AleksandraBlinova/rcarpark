@@ -1,7 +1,7 @@
-.btn-primary {
+.btn-2{
     
     background: linear-gradient(#000, #640f66) ;
-    padding: 9px 16px;
+    padding: 9px 18px;
     color: #fff;
     border:none;
     cursor: pointer;
@@ -9,7 +9,8 @@
     margin: 40px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
-    margin-left: 16rem;
+    margin-left: 15.5rem;
+    border-radius: 4px;
     
 }
 .form-container1 {
@@ -22,8 +23,8 @@
     margin: 30px auto;
     color: rgb(12, 11, 11);
     top: 50%;
-    background: rgba(119, 111, 111, 0.1)
-
+    background: rgba(119, 111, 111, 0.1);
+    
   }
 
 .h1{
@@ -39,14 +40,11 @@
 }
 .label{
     
-    margin-left: 14rem;
-    margin-top: 10px;
+    margin-left: 12rem;
+    margin-top: 15px;    
 }
 
-.combobox{
-    
-    margin-left: 16rem;
-    margin-top: 15px;
-    
+.fields{
+    margin-top: 25px;   
 }
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './Cars.css'
 import Car from './Car.js'
-import CarCreate from './CarCreate'
+import CarCreate from '../CarsSection/CarCreate/CarCreate'
 import Footer from '../../pages/HomeSection/Footer'
-
+import CarChange from '../CarsSection/CarChange/CarChange'
 
 const Cars = () => {
     const [cars, setCars] = useState([]);
@@ -21,6 +21,8 @@ const Cars = () => {
         <CarCreate
         addCar={addCar}
            />
+
+       <CarChange />
 
         <Footer />
       </div>
