@@ -45,7 +45,8 @@ function Table (props) {
          <MDBTableBody>
         {  props.data.filter(i =>
             i.price.toString().indexOf(props.search) !== -1 || 
-            i.modelFkNavigation.model1.toLocaleLowerCase().indexOf(props.search) !== -1)
+            i.modelFkNavigation.model1.toLocaleLowerCase().indexOf(props.search) !== -1 ||
+            i.colorFkNavigation.color1.toLocaleLowerCase().indexOf(props.search) !== -1 )
             .map(item =>(
             <tr key={item.id} >
                 <td >{item.id}</td>
