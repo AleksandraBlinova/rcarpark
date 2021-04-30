@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import NativeSelect from '@material-ui/core/NativeSelect';
 import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -17,14 +17,44 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-
-const Model = () => {
-    const classes = useStyles();
-    const [model, setModel] = React.useState('');
   
+  
+function Model ({models, setModel})  {
+    
+  const classes = useStyles();
+    
+    
+  
+
     const handleChange = (event) => {
         setModel(event.target.value);
     };
+
+
+
+    useEffect(() => {
+     
+      axios({
+          "method": "GET",
+          "url": "http://localhost:58475/api/models/",
+          "headers": {
+              "content-type": "application/json",
+          }
+      })
+          .then((response) => {
+              setModel(response.data);
+              
+          })
+          .catch((error) => {
+              console.log(error);
+             
+          });
+  }, [setModel]);
+
+
+
+  console.log(models)
+
     return (
         <div>
       <FormControl className={classes.formControl}>
@@ -32,12 +62,12 @@ const Model = () => {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={model}
+         
           onChange={handleChange}
         >
-          <MenuItem value={1}>Model1</MenuItem>
-          <MenuItem value={2}>Model2</MenuItem>
-          <MenuItem value={3}>Model3</MenuItem>
+       
+       <MenuItem>{models}</MenuItem> 
+       
           
         </Select>
       </FormControl>

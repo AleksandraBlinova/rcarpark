@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Table from '../../components/Table/Table'
 import { TableSearch } from '../../components/Table/TableSearch';
+import PropTypes from 'prop-types';
 
 
 
@@ -16,7 +17,7 @@ const Car = ({ cars, setCars, removeCar }) => {
         setLoading(true);
         axios({
             "method": "GET",
-            "url": "https://localhost:44396/api/cars/",
+            "url": "http://localhost:58475/api/cars/",
             "headers": {
                 "content-type": "application/json",
             }
@@ -35,9 +36,9 @@ const Car = ({ cars, setCars, removeCar }) => {
 
     const deleteItem = (id ) => {
         //e.stopPropagation();
-        axios.delete(`https://localhost:44396/api/cars/${id}`)
+        axios.delete(`http://localhost:58475/api/cars/${id}`)
             .then((response) => {
-                response.status = 204 ? removeCar(id) : null;
+                response.status = 204 && removeCar(id) 
             })
             .catch(console.error);
     };
@@ -62,4 +63,10 @@ const Car = ({ cars, setCars, removeCar }) => {
     );
 };
 
+
+Car.propTypes = {
+    cars: PropTypes.array.isRequired,
+    setCars: PropTypes.func.isRequired,
+    removeCar: PropTypes.func.isRequired,
+};
 export default Car;

@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import NativeSelect from '@material-ui/core/NativeSelect';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -19,13 +19,37 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-const Color = () => {
-    const classes = useStyles();
-    const [color, setcolor] = React.useState('');
+const Color = ({colors, setColor}) => {
+    
+  const classes = useStyles();
+   
   
     const handleChange = (event) => {
-        setcolor(event.target.value);
-    };
+      setColor(event.target.value);
+  };
+
+
+
+  useEffect(() => {
+   
+    axios({
+        "method": "GET",
+        "url": "http://localhost:58475/api/colors/",
+        "headers": {
+            "content-type": "application/json",
+        }
+    })
+        .then((response) => {
+            setColor(response.data);
+            
+        })
+        .catch((error) => {
+            console.log(error);
+           
+        });
+}, [setColor]);
+
+
     return (
         <div>
       <FormControl className={classes.formControl}>
@@ -33,13 +57,9 @@ const Color = () => {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={color}
           onChange={handleChange}
         >
-          <MenuItem value={1}>Color1</MenuItem>
-          <MenuItem value={2}>Color2</MenuItem>
-          <MenuItem value={3}>Color3</MenuItem>
-          <MenuItem value={4}>Color4</MenuItem>
+        <MenuItem>{colors}</MenuItem> 
           
         </Select>
       </FormControl>
