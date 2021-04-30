@@ -5,6 +5,7 @@ import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import axios from 'axios';
+import Input from '@material-ui/core/Input';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -19,19 +20,16 @@ const useStyles = makeStyles((theme) => ({
 
   
   
-function Model ({models, setModel})  {
+function Model ({setModel, models})  {
     
   const classes = useStyles();
-    
-    
   
 
     const handleChange = (event) => {
         setModel(event.target.value);
     };
 
-
-
+    
     useEffect(() => {
      
       axios({
@@ -42,7 +40,7 @@ function Model ({models, setModel})  {
           }
       })
           .then((response) => {
-              setModel(response.data);
+            setModel(response.data);
               
           })
           .catch((error) => {
@@ -51,24 +49,23 @@ function Model ({models, setModel})  {
           });
   }, [setModel]);
 
-
+ 
 
   console.log(models)
-
     return (
         <div>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Модель</InputLabel>
+        <FormControl className={classes.formControl}>
+        <InputLabel id="demo-mutiple-name-label">Модель</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-         
+          labelId="demo-mutiple-name-label"
+          id="demo-mutiple-name"
+          multiple
+          value={models}
           onChange={handleChange}
-        >
-       
-       <MenuItem>{models}</MenuItem> 
-       
+          input={<Input />}
           
+        >
+        
         </Select>
       </FormControl>
       </div>

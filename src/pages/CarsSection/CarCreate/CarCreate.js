@@ -33,7 +33,7 @@ function CarCreate (props)  {
     <form className='form-container1' onSubmit={handleSubmit}>
     <div className='fields'>
           
-         <Model className='combobox' models={(models.map(i=>(i.model1)))} setModel={setModel}/>
+         <Model className='combobox' models={models} setModel={setModel}/>
          
          <Color className='combobox' colors={(colors.map(i=>(i.color1)))} setColor={setColor}/>
          <ReleaseYear className='date'/>

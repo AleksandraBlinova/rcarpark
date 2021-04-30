@@ -22,6 +22,7 @@ const Navbar = () => {
           <NavLink to="/contacts" >
             Контакты
           </NavLink>
+          
         </NavMenu>
         <NavBtn>
         <NavBtnLink to="/signin">Войти</NavBtnLink>

@@ -7,7 +7,7 @@ import Offers from './pages/OfferSection/index';
 import form from './pages/forms/Form'
 import Contacts from './pages/ContactsSection/Contacts'
 import Cars from './pages/CarsSection/Cars'
-
+import FormSignIn from './pages/forms/FormSignIn'
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
      <Route path="/contacts" component={Contacts} />
      <Route path="/signin" component={form} />
      <Route path="/models" component={Cars} />
+     <Route path="/login" component={FormSignIn} />
      </Switch>
     </Router>
     

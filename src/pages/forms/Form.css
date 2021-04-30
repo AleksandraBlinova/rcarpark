@@ -68,7 +68,7 @@ color:red;
   }
   
   .form h1 {
-    font-size: 1rem;
+    font-size: 24px;
     text-align: start;
     width: 80%;
     margin-bottom: 1rem;
@@ -88,7 +88,7 @@ color:red;
   
   .form-label {
     display: inline-block;
-    font-size: 0.8rem;
+    font-size: 14px;
     margin-bottom: 6px;
     color: #fff;
   }
@@ -105,7 +105,7 @@ color:red;
   
   .form-input::placeholder {
     color: #595959;
-    font-size: 12px;
+    font-size: 13px;
   }
   
   .form-input-btn {
@@ -121,7 +121,7 @@ color:red;
     outline: none;
     border: none;
     color: #fff;
-    font-size: 1rem;
+    font-size: 16px;
   }
   
   .form-input-btn:hover {
@@ -135,7 +135,7 @@ color:red;
   }
   
   .form-input-login {
-    font-size: 0.8rem;
+    font-size: 14px;
     margin-top: 10px;
     color: #fff;
     width: 80%;
@@ -146,4 +146,5 @@ color:red;
     text-decoration: none;
     color: #5c78f7;
     font-weight: 600;
+    font-size: 14px;
   }

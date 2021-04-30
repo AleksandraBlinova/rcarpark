@@ -2,7 +2,7 @@ import React from 'react';
 import useForm from './UseForm'
 import validate from './validateInfo'
 import './Form.css'
-import FormSignIn from './FormSignIn'
+
 
 const Formsignup = ({submitForm}) => {
     const {handleChange, values, handleSubmit, errors} = useForm(submitForm,validate);
@@ -75,7 +75,8 @@ const Formsignup = ({submitForm}) => {
        
         <button className="form-input-btn" type="submit">Зарегистироваться</button>
         <span className="form-input-login">
-        Уже зарегистрированы? Войдите на сайт<a href =""> здесь</a>
+        Уже зарегистрированы? Войдите на сайт<a href ="/login"> здесь</a>
+       
         </span>
         </form>
             
