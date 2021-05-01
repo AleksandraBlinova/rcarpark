@@ -15,7 +15,7 @@ const CarChange = () => {
     <form className='form-container2' >
     <div className='fields'>
           
-         <Model className='combobox'/>
+          <Model className='combobox'/>
          <Color className='combobox'/>
          <ReleaseYear className='date'/>
          <Price className='label'/>

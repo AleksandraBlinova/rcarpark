@@ -23,7 +23,9 @@ function CarCreate (props)  {
             .catch(console.error);
     };
    
-    
+    const handleSetModel = (data) => {
+        setModel(data);
+    }
    
     return (
       
@@ -33,7 +35,7 @@ function CarCreate (props)  {
     <form className='form-container1' onSubmit={handleSubmit}>
     <div className='fields'>
           
-         <Model className='combobox' models={models} setModel={setModel}/>
+         <Model className='combobox' models={models} setModel={handleSetModel}/>
          
          <Color className='combobox' colors={(colors.map(i=>(i.color1)))} setColor={setColor}/>
          <ReleaseYear className='date'/>

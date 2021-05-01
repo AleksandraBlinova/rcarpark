@@ -30,7 +30,7 @@ const Car = ({ cars, setCars, removeCar }) => {
                 console.log(error);
                 setLoading(false);
             });
-    }, [setCars]);
+    }, []);
     
      
 

@@ -5,7 +5,7 @@ import './Form.css'
 
 
 const Formsignup = ({submitForm}) => {
-    const {handleChange, values, handleSubmit, errors} = useForm(submitForm,validate);
+    const {handleChange, values, handleSubmit, errors} = useForm(() => submitForm(values),validate);
     return (
       
         <div className="form-content-right">

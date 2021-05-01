@@ -32,7 +32,6 @@ const Cars = () => {
         cars={cars}
            />
 
-       <CarChange />
 
         <Footer />
       </div>

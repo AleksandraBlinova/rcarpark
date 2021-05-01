@@ -23,13 +23,12 @@ const useStyles = makeStyles((theme) => ({
 function Model ({setModel, models})  {
     
   const classes = useStyles();
-  
+    const [currentModel, setCurrentModel] = useState("");
 
     const handleChange = (event) => {
-        setModel(event.target.value);
+        setCurrentModel(event.target.value);
     };
 
-    
     useEffect(() => {
      
       axios({
@@ -40,18 +39,14 @@ function Model ({setModel, models})  {
           }
       })
           .then((response) => {
+            console.log("response",response.data)
             setModel(response.data);
-              
           })
           .catch((error) => {
               console.log(error);
              
           });
-  }, [setModel]);
-
- 
-
-  console.log(models)
+  }, []);
     return (
         <div>
         <FormControl className={classes.formControl}>
@@ -59,14 +54,13 @@ function Model ({setModel, models})  {
         <Select
           labelId="demo-mutiple-name-label"
           id="demo-mutiple-name"
-          multiple
-          value={models}
-          onChange={handleChange}
           input={<Input />}
-          
+          value={currentModel}
+          onChange={handleChange}
         >
-        
+        {models.map((car, index) => (<MenuItem key={index} value={car.model1}>{car.model1}</MenuItem>))}
         </Select>
+
       </FormControl>
       </div>
     )
