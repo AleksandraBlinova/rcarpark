@@ -20,12 +20,13 @@ const useStyles = makeStyles((theme) => ({
 
   
   
-function Color ({setColor, colors, setCurrentColor, currentColor})  {
+function Color ({setColor, colors, setCurrentColor, currentColor, currentIdC, setCurrentColorId})  {
     
   const classes = useStyles();
   
     const handleChange = (event) => {
       setCurrentColor(event.target.value);
+      setCurrentColorId(event.target.value);
     };
 
     useEffect(() => {
@@ -54,10 +55,10 @@ function Color ({setColor, colors, setCurrentColor, currentColor})  {
           labelId="demo-mutiple-name-label"
           id="demo-mutiple-name"
           input={<Input />}
-          value={currentColor}
+          value={currentColor, currentIdC}
           onChange={handleChange}
         >
-        {colors.map((car, index) => (<MenuItem key={index} value={car.color1}>{car.color1}</MenuItem>))}
+        {colors.map((car, index) => (<MenuItem key={index} value={car.color1, car.id}>{car.color1}</MenuItem>))}
         </Select>
 
       </FormControl>

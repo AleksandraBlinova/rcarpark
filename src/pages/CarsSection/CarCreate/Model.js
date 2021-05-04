@@ -20,13 +20,14 @@ const useStyles = makeStyles((theme) => ({
 
   
   
-function Model ({setModel, models, currentModel, setCurrentModel})  {
+function Model ({setModel, models, currentModel, setCurrentModel, currentIdM, setCurrentModelId})  {
     
   const classes = useStyles();
     
 
     const handleChange = (event) => {
         setCurrentModel(event.target.value);
+        setCurrentModelId(event.target.value);
     };
 
     useEffect(() => {
@@ -47,7 +48,7 @@ function Model ({setModel, models, currentModel, setCurrentModel})  {
              
           });
   }, []);
-  
+ 
     return (
         <div>
         <FormControl className={classes.formControl}>
@@ -56,10 +57,11 @@ function Model ({setModel, models, currentModel, setCurrentModel})  {
           labelId="demo-mutiple-name-label"
           id="demo-mutiple-name"
           input={<Input />}
-          value={currentModel}
+          value={currentModel, currentIdM}
           onChange={handleChange}
+          
         >
-        {models.map((car, index) => (<MenuItem key={index} value={car.model1}>{car.model1}</MenuItem>))}
+        {models.map((car, index) => (<MenuItem key={index}  value={car.model1, car.id}>{car.model1}</MenuItem>))}
         
         
         </Select>

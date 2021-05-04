@@ -17,7 +17,8 @@ function CarCreate (props)  {
     const [currentColor, setCurrentColor] = useState("");
     const [price, setPrice]= useState("");
     const [releaseYear, setReleaseYear]= useState("");
-
+    const [currentIdM, setCurrentModelId] = useState("");
+    const [currentIdC, setCurrentColorId] = useState("");
     
    
    
@@ -27,8 +28,8 @@ function CarCreate (props)  {
        
     
         const values = {
-            modelFk: 1, 
-            colorFk: 1,
+            modelFk: currentIdM, 
+            colorFk: currentIdC,
             price:price, 
             releaseYear:releaseYear,
             plantFk:7,
@@ -63,11 +64,17 @@ function CarCreate (props)  {
     <form className='form-container1' onSubmit={handleSubmit}>
     <div className='fields'>
           
-         <Model className='combobox' models={models} setModel={handleSetModel} currentModel={currentModel} setCurrentModel={setCurrentModel}/>
+         <Model className='combobox' models={models} setModel={handleSetModel} currentModel={currentModel} 
+         setCurrentModel={setCurrentModel} currentIdM={currentIdM} setCurrentModelId={setCurrentModelId}/>
          
-         <Color className='combobox' colors={colors} setColor={handleSetColor} currentColor={currentColor} setCurrentColor={setCurrentColor}/>
+         <Color className='combobox' colors={colors} setColor={handleSetColor}
+          currentColor={currentColor} setCurrentColor={setCurrentColor}
+          currentIdC={currentIdC} setCurrentColorId={setCurrentColorId}/>
+
          <ReleaseYear className='date' releaseYear={releaseYear} setReleaseYear={setReleaseYear}/>
+
          <Price className='label' price={price} setPrice={setPrice}/>
+
          <Photo className='label'/>
         <div>
         <button className='btn-2' type="submit">Создать</button>
