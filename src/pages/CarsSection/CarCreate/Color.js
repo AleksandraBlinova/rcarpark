@@ -1,67 +1,65 @@
 import React, { useEffect, useState } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import axios from 'axios';
-
+import Input from '@material-ui/core/Input';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
       marginLeft: theme.spacing(24),
       minWidth: 220,
-      marginTop: theme.spacing(3),
+      marginTop: theme.spacing(2),
     },
     selectEmpty: {
       marginTop: theme.spacing(2.5),
     },
   }));
 
-
-const Color = ({colors, setColor}) => {
+  
+  
+function Color ({setColor, colors, setCurrentColor, currentColor})  {
     
   const classes = useStyles();
-   
   
     const handleChange = (event) => {
-      setColor(event.target.value);
-  };
+      setCurrentColor(event.target.value);
+    };
 
-
-
-  useEffect(() => {
-   
-    axios({
-        "method": "GET",
-        "url": "http://localhost:58475/api/colors/",
-        "headers": {
-            "content-type": "application/json",
-        }
-    })
-        .then((response) => {
-            setColor(response.data);
+    useEffect(() => {
+     
+      axios({
+          "method": "GET",
+          "url": "http://localhost:58475/api/colors/",
+          "headers": {
+              "content-type": "application/json",
+          }
+      })
+          .then((response) => {
             
-        })
-        .catch((error) => {
-            console.log(error);
-           
-        });
-}, [setColor]);
-
-
+            setColor(response.data);
+          })
+          .catch((error) => {
+              console.log(error);
+             
+          });
+  }, []);
     return (
         <div>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Цвет </InputLabel>
+        <FormControl className={classes.formControl}>
+        <InputLabel id="demo-mutiple-name-label">Цвет</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          labelId="demo-mutiple-name-label"
+          id="demo-mutiple-name"
+          input={<Input />}
+          value={currentColor}
           onChange={handleChange}
         >
-        <MenuItem>{colors}</MenuItem> 
-          
+        {colors.map((car, index) => (<MenuItem key={index} value={car.color1}>{car.color1}</MenuItem>))}
         </Select>
+
       </FormControl>
       </div>
     )

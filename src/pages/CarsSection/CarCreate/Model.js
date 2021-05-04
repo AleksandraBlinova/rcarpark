@@ -20,10 +20,10 @@ const useStyles = makeStyles((theme) => ({
 
   
   
-function Model ({setModel, models})  {
+function Model ({setModel, models, currentModel, setCurrentModel})  {
     
   const classes = useStyles();
-    const [currentModel, setCurrentModel] = useState("");
+    
 
     const handleChange = (event) => {
         setCurrentModel(event.target.value);
@@ -39,7 +39,7 @@ function Model ({setModel, models})  {
           }
       })
           .then((response) => {
-            console.log("response",response.data)
+           
             setModel(response.data);
           })
           .catch((error) => {
@@ -47,6 +47,7 @@ function Model ({setModel, models})  {
              
           });
   }, []);
+  
     return (
         <div>
         <FormControl className={classes.formControl}>
@@ -59,6 +60,8 @@ function Model ({setModel, models})  {
           onChange={handleChange}
         >
         {models.map((car, index) => (<MenuItem key={index} value={car.model1}>{car.model1}</MenuItem>))}
+        
+        
         </Select>
 
       </FormControl>

@@ -51,7 +51,7 @@ const Photo = () => {
         <FormControl >
         <InputLabel htmlFor="demo-customized-textbox">Фото</InputLabel>
         <BootstrapInput id="demo-customized-textbox" />
-        <FormHelperText>Фото автомобиля</FormHelperText>
+        <FormHelperText>Путь расположения фото автомобиля</FormHelperText>
         </FormControl>
         </div>
 

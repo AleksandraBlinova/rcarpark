@@ -16,12 +16,12 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const ReleaseYear = () => {
+const ReleaseYear = ({releaseYear, setReleaseYear}) => {
     const classes = useStyles();
     const [year, setYear] = React.useState('');
   
     const handleChange = (event) => {
-        setYear(event.target.value);
+      setReleaseYear(event.target.value);
     };
     return (
         <div>
@@ -30,7 +30,7 @@ const ReleaseYear = () => {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={year}
+          value={releaseYear}
           onChange={handleChange}
         >
           <MenuItem value={2021}>2021</MenuItem>

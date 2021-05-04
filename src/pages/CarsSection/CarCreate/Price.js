@@ -41,12 +41,17 @@ const BootstrapInput = withStyles((theme) => ({
   }))(InputBase);
 
  
-const Price = () => {
+
+const Price = ({price, setPrice }) => {
+
+  const handleChange = (event) => {
+    setPrice(event.target.value);
+};
     return (
         <div>
         <div className='label'>
-        <FormControl >
-        <InputLabel htmlFor="demo-customized-textbox">Цена</InputLabel>
+        <FormControl value={price}  onChange={handleChange}>
+        <InputLabel htmlFor="demo-customized-textbox" >Цена </InputLabel>
         <BootstrapInput id="demo-customized-textbox" />
         <FormHelperText>Цена</FormHelperText>
         </FormControl>

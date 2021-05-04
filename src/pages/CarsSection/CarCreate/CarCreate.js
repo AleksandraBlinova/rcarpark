@@ -8,23 +8,51 @@ import Color from './Color';
 import ReleaseYear from './ReleaseYear';
 import PropTypes from 'prop-types';
 
+
 function CarCreate (props)  {
    
     const [models, setModel] = useState([]);
     const [colors, setColor] = useState([]);
+    const [currentModel, setCurrentModel] = useState("");
+    const [currentColor, setCurrentColor] = useState("");
+    const [price, setPrice]= useState("");
+    const [releaseYear, setReleaseYear]= useState("");
+
+    
+   
+   
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const { value } = e.target.elements.url;
-        axios.post('https://localhost:58475/api/cars/', { url: value })
+       
+    
+        const values = {
+            modelFk: 1, 
+            colorFk: 1,
+            price:price, 
+            releaseYear:releaseYear,
+            plantFk:7,
+            availability:true
+        }
+        console.log(values)
+        axios.post(
+            'http://localhost:58475/api/cars/', values, { withCredentials: true }
+        )
             .then((response) => {
-                response.status = 201 && props.addCar(response.data) 
+                response.status === 201 && props.addCar(response.data) 
             })
             .catch(console.error);
+
+        
     };
+  
    
     const handleSetModel = (data) => {
         setModel(data);
+        
+    }
+    const handleSetColor = (data) => {
+        setColor(data);
     }
    
     return (
@@ -35,11 +63,11 @@ function CarCreate (props)  {
     <form className='form-container1' onSubmit={handleSubmit}>
     <div className='fields'>
           
-         <Model className='combobox' models={models} setModel={handleSetModel}/>
+         <Model className='combobox' models={models} setModel={handleSetModel} currentModel={currentModel} setCurrentModel={setCurrentModel}/>
          
-         <Color className='combobox' colors={(colors.map(i=>(i.color1)))} setColor={setColor}/>
-         <ReleaseYear className='date'/>
-         <Price className='label'/>
+         <Color className='combobox' colors={colors} setColor={handleSetColor} currentColor={currentColor} setCurrentColor={setCurrentColor}/>
+         <ReleaseYear className='date' releaseYear={releaseYear} setReleaseYear={setReleaseYear}/>
+         <Price className='label' price={price} setPrice={setPrice}/>
          <Photo className='label'/>
         <div>
         <button className='btn-2' type="submit">Создать</button>
