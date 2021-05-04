@@ -16,6 +16,7 @@ function CarCreate (props)  {
     const [currentModel, setCurrentModel] = useState("");
     const [currentColor, setCurrentColor] = useState("");
     const [price, setPrice]= useState("");
+    const [photo, setPhoto]= useState("");
     const [releaseYear, setReleaseYear]= useState("");
     const [currentIdM, setCurrentModelId] = useState("");
     const [currentIdC, setCurrentColorId] = useState("");
@@ -33,7 +34,8 @@ function CarCreate (props)  {
             price:price, 
             releaseYear:releaseYear,
             plantFk:7,
-            availability:true
+            availability:true,
+            imageUrl:photo
         }
         console.log(values)
         axios.post(
@@ -75,7 +77,7 @@ function CarCreate (props)  {
 
          <Price className='label' price={price} setPrice={setPrice}/>
 
-         <Photo className='label'/>
+         <Photo className='label' photo={photo} setPhoto={setPhoto}/>
         <div>
         <button className='btn-2' type="submit">Создать</button>
         </div>

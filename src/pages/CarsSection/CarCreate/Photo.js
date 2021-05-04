@@ -43,12 +43,16 @@ const BootstrapInput = withStyles((theme) => ({
  
 
 
-const Photo = () => {
+const Photo = ({photo, setPhoto }) => {
+
+  const handleChange = (event) => {
+    setPhoto(event.target.value);
+  };
     return (
         <div>
         
         <div className='label'>
-        <FormControl >
+        <FormControl value={photo}  onChange={handleChange}>
         <InputLabel htmlFor="demo-customized-textbox">Фото</InputLabel>
         <BootstrapInput id="demo-customized-textbox" />
         <FormHelperText>Путь расположения фото автомобиля</FormHelperText>
