@@ -16,9 +16,9 @@ const Cars = () => {
     const [cars, setCars] = useState([]);
     const addCar = (car) => setCars([...cars, car]);
     const removeCar = (removeId) => setCars(cars.filter(({ Id }) => Id !== removeId));
-    
-    
-    
+    const editCar = (editId) => setCars(cars.filter(({ Id }) => Id === editId));
+    const [currentcar, setCars] = useState([]);
+
     return (
       <div>
      
@@ -26,13 +26,15 @@ const Cars = () => {
           cars={cars}
           setCars={setCars}
           removeCar={removeCar}
+          editCar={editCar}
+
         />
         <CarCreate
         addCar={addCar}
         cars={cars}
            />
-
-
+       <CarChange editCar={editCar}  
+       cars={cars} />
         <Footer />
       </div>
     );

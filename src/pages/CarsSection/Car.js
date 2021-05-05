@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 
 
-const Car = ({ cars, setCars, removeCar }) => {
+const Car = ({ cars, setCars, removeCar, editCar }) => {
     
     const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState('')
@@ -43,6 +43,15 @@ const Car = ({ cars, setCars, removeCar }) => {
             .catch(console.error);
     };
 
+    const editItem = (id ) => {
+        axios.get(`http://localhost:58475/api/cars/${id}`)
+        .then((response) => {
+            response.status = 200 && editCar(id) 
+            
+        })
+        .catch(console.error);
+    };
+   
     const showLoading = () => (loading ? <div>Загрузка...</div> : null);
       
     return (
@@ -56,7 +65,7 @@ const Car = ({ cars, setCars, removeCar }) => {
                 search={search}
                 handleChangeSearch={(value) => setSearch(value)}
             />
-            <Table search={search} data={cars} deleteItem={deleteItem}  />
+            <Table search={search} data={cars} deleteItem={deleteItem} editItem={editItem}/>
             
           
         </React.Fragment>
@@ -68,5 +77,6 @@ Car.propTypes = {
     cars: PropTypes.array.isRequired,
     setCars: PropTypes.func.isRequired,
     removeCar: PropTypes.func.isRequired,
+    editCar: PropTypes.func.isRequired,
 };
 export default Car;
