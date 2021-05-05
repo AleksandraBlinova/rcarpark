@@ -63,6 +63,8 @@ function Model ({setModel, models, currentModel, setCurrentModel, currentIdM, se
         >
         
         
+        {models.map((car, index) => (<MenuItem key={index}  value={car.model1, car.id}>{car.model1}</MenuItem>))}
+        
         
         </Select>
 

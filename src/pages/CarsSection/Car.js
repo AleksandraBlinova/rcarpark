@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 
 
-const Car = ({ cars, setCars, removeCar, editCar }) => {
+const Car = ({ cars, setCars, removeCar, editCar, currentcar, setcurrentCar }) => {
     
     const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState('')
@@ -33,7 +33,6 @@ const Car = ({ cars, setCars, removeCar, editCar }) => {
     }, []);
     
      
-
     const deleteItem = (id ) => {
         //e.stopPropagation();
         axios.delete(`http://localhost:58475/api/cars/${id}`)
@@ -43,15 +42,7 @@ const Car = ({ cars, setCars, removeCar, editCar }) => {
             .catch(console.error);
     };
 
-    const editItem = (id ) => {
-        axios.get(`http://localhost:58475/api/cars/${id}`)
-        .then((response) => {
-            response.status = 200 && editCar(id) 
-            
-        })
-        .catch(console.error);
-    };
-   
+  
     const showLoading = () => (loading ? <div>Загрузка...</div> : null);
       
     return (
@@ -65,7 +56,9 @@ const Car = ({ cars, setCars, removeCar, editCar }) => {
                 search={search}
                 handleChangeSearch={(value) => setSearch(value)}
             />
-            <Table search={search} data={cars} deleteItem={deleteItem} editItem={editItem}/>
+            
+            <Table search={search} data={cars} deleteItem={deleteItem} editCar={editCar} currentcar={currentcar}
+            setcurrentCar={setcurrentCar}/>
             
           
         </React.Fragment>

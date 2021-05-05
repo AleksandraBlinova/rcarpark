@@ -47,6 +47,7 @@ const Price = ({price, setPrice }) => {
   const handleChange = (event) => {
     setPrice(event.target.value);
 };
+
     return (
         <div>
         <div className='label'>

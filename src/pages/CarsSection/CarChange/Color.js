@@ -58,7 +58,7 @@ function Color ({setColor, colors, setCurrentColor, currentColor, currentIdC, se
           value={currentColor, currentIdC}
           onChange={handleChange}
         >
-        
+        {colors.map((car, index) => (<MenuItem key={index} value={car.color1, car.id}>{car.color1}</MenuItem>))}
         </Select>
 
       </FormControl>
