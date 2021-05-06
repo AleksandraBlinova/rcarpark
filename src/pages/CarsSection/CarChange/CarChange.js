@@ -30,7 +30,7 @@ function CarChange({ currentcar, editCar }) {
     setCurrentReleaseYear(currentcar.releaseYear);
    
   }, [currentcar]);
-console.log(currentcar)
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const values = {

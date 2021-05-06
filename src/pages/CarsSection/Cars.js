@@ -19,7 +19,6 @@ const Cars = () => {
     const initialFormState = { id: null, price: '', releaseYear: '', model1: '', color1: '', modelid: 0, colorid: 0 }
     const [currentcar, setcurrentCar] = useState(initialFormState)
     
- 
     const editCar = (car) => {
      
             setcurrentCar({ id: car.id, price: car.price,  releaseYear: car.releaseYear, 
