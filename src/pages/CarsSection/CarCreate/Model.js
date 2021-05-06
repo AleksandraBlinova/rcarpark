@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
   
-  
+ 
 function Model ({setModel, models, currentModel, setCurrentModel, currentIdM, setCurrentModelId})  {
     
   const classes = useStyles();
@@ -29,7 +29,7 @@ function Model ({setModel, models, currentModel, setCurrentModel, currentIdM, se
         setCurrentModel(event.target.value);
         setCurrentModelId(event.target.value);
     };
-
+    console.log(currentIdM)
     useEffect(() => {
      
       axios({

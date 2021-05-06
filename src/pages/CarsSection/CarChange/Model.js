@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
 function Model ({setModel, models, currentModel, setCurrentModel, currentIdM, setCurrentModelId})  {
     
   const classes = useStyles();
-    
 
     const handleChange = (event) => {
         setCurrentModel(event.target.value);

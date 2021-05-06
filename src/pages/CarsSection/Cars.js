@@ -16,15 +16,17 @@ const Cars = () => {
     const [cars, setCars] = useState([]);
     const addCar = (car) => setCars([...cars, car]);
     const removeCar = (removeId) => setCars(cars.filter(({ Id }) => Id !== removeId));
-    const initialFormState = { id: null, price: '', releaseYear: '', model1:'', color1: '' }
+    const initialFormState = { id: null, price: '', releaseYear: '', model1:'', color1: '', modelid: 0, colorid: 0 }
     const [currentcar, setcurrentCar] = useState(initialFormState)
     
  
     const editCar = (car) => {
+      console.log("car", car);
             setcurrentCar({ id: car.id, price: car.price,  releaseYear: car.releaseYear, 
-               model1: car.modelFkNavigation.model1, color1: car.colorFkNavigation.color1 })
+               model1: car.modelFkNavigation.model1, color1: car.colorFkNavigation.color1, 
+               modelid:car.modelFkNavigation.id, colorid:car.colorFkNavigation.id })
     }
-   
+    console.log("car", currentcar);
     return (
       <div>
      
@@ -32,13 +34,8 @@ const Cars = () => {
           cars={cars}
           setCars={setCars}
           removeCar={removeCar}
-          currentcar={currentcar}
-          setcurrentCar={setcurrentCar}
-          editCar={editCar}
-        />
-        <CarCreate
-        addCar={addCar}
         cars={cars}
+        editCar={editCar}
            />
        <CarChange 
        editCar={editCar}  

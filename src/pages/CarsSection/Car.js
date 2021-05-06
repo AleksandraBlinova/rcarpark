@@ -12,7 +12,7 @@ const Car = ({ cars, setCars, removeCar, editCar, currentcar, setcurrentCar }) =
     
     const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState('')
-
+    console.log("editcat", editCar)
     useEffect(() => {
         setLoading(true);
         axios({
