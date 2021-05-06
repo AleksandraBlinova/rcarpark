@@ -12,7 +12,7 @@ const Car = ({ cars, setCars, removeCar, editCar, currentcar, setcurrentCar }) =
     
     const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState('')
-    console.log("editcat", editCar)
+   
     useEffect(() => {
         setLoading(true);
         axios({
@@ -66,10 +66,4 @@ const Car = ({ cars, setCars, removeCar, editCar, currentcar, setcurrentCar }) =
 };
 
 
-Car.propTypes = {
-    cars: PropTypes.array.isRequired,
-    setCars: PropTypes.func.isRequired,
-    removeCar: PropTypes.func.isRequired,
-    editCar: PropTypes.func.isRequired,
-};
 export default Car;

@@ -8,7 +8,7 @@ import "./CarChange.css";
 import axios from "axios";
 
 function CarChange({ currentcar, editCar }) {
-  const [releaseYear, setReleaseYear] = useState("");
+  
   const [models, setModel] = useState([]);
   const [colors, setColor] = useState([]);
   const [currentModel, setCurrentModel] = useState("");
@@ -16,23 +16,32 @@ function CarChange({ currentcar, editCar }) {
   const [currentIdM, setCurrentModelId] = useState("");
   const [currentIdC, setCurrentColorId] = useState("");
   const [currentPrice, setCurrentPrice] = useState("");
-  const [car, setCar] = useState(currentcar);
+  const [currentReleaseYear, setCurrentReleaseYear] = useState("");
+  const [car, setCar] = useState("");
 
   useEffect(() => {
     setCar(currentcar);
     setCurrentModel(currentcar.model1);
     setCurrentModelId(currentcar.modelid);
+    setCurrentColor(currentcar.color1);
+    setCurrentColorId(currentcar.colorid);
     setCurrentPrice(currentcar.price);
+    setCurrentReleaseYear(currentcar.releaseYear);
   }, [currentcar]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const values = {
-      price: car.price,
-      releaseYear: car.releaseYear,
+      modelFk: currentIdM,
+      colorFk: currentIdC,
+      price: currentPrice,
+      releaseYear: currentReleaseYear
+     
+     
     };
+    console.log(values)
     axios
-      .put("http://localhost:58475/api/cars/", values, {
+      .put(`http://localhost:58475/api/cars/${currentcar.id}`, values, {
         withCredentials: true,
       })
       .then((response) => {
@@ -46,6 +55,10 @@ function CarChange({ currentcar, editCar }) {
   const handleSetCurrentModel = (data) => {
     setCurrentModel(data);
   };
+
+  const handleSetCurrentColor = (data) => {
+    setCurrentColor(data);
+  };
   const handleSetColor = (data) => {
     setColor(data);
   };
@@ -53,6 +66,10 @@ function CarChange({ currentcar, editCar }) {
   const handleSetCurrentPrice = (data) => {
     setCurrentPrice(data);
   };
+  const handleSetCurrentReleaseYear = (data) => {
+    setCurrentReleaseYear(data);
+  };
+
 
   return (
     <React.Fragment>
@@ -72,15 +89,17 @@ function CarChange({ currentcar, editCar }) {
 
             <Color
               className="combobox"
-              currentColor={car.color1}
-              setCurrentColor={car.color1}
+              currentColor={currentColor}
+              setCurrentColor={handleSetCurrentColor}
               colors={colors}
               setColor={handleSetColor}
+              currentIdC={currentIdC}
+              setCurrentColorId={setCurrentColorId}
             />
             <ReleaseYear
               className="date"
-              releaseYear={car.releaseYear}
-              setReleaseYear={car.releaseYear}
+              releaseYear={currentReleaseYear}
+              setReleaseYear={handleSetCurrentReleaseYear}
             />
 
             <Price

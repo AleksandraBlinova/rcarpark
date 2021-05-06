@@ -21,12 +21,12 @@ const Cars = () => {
     
  
     const editCar = (car) => {
-      console.log("car", car);
+     
             setcurrentCar({ id: car.id, price: car.price,  releaseYear: car.releaseYear, 
                model1: car.modelFkNavigation.model1, color1: car.colorFkNavigation.color1, 
                modelid:car.modelFkNavigation.id, colorid:car.colorFkNavigation.id })
     }
-    console.log("car", currentcar);
+ 
     return (
       <div>
      
@@ -37,6 +37,10 @@ const Cars = () => {
         cars={cars}
         editCar={editCar}
            />
+
+       <CarCreate  cars={cars}
+       setCars={setCars}/>
+       
        <CarChange 
        editCar={editCar}  
        cars={cars} 

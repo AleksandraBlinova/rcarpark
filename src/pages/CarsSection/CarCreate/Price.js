@@ -50,9 +50,9 @@ const Price = ({price, setPrice }) => {
     return (
         <div>
         <div className='label'>
-        <FormControl value={price}  onChange={handleChange}>
+        <FormControl >
         <InputLabel htmlFor="demo-customized-textbox" >Цена </InputLabel>
-        <BootstrapInput id="demo-customized-textbox" />
+        <BootstrapInput id="demo-customized-textbox" value={price}  onChange={handleChange}/>
         <FormHelperText>Цена</FormHelperText>
         </FormControl>
         </div>
