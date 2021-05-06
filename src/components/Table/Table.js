@@ -1,7 +1,7 @@
 import React from 'react'
 import './Table.css'
 import { MDBTable, MDBTableBody, MDBTableHead  } from 'mdbreact';
-
+import { Link } from 'react-router-dom';
 
 function Table (props) {
     
@@ -56,7 +56,7 @@ function Table (props) {
                 <td >{item.price}</td>
                 <td >{item.releaseYear}</td>
                 <td>  <button onClick={(e) => props.deleteItem(item.id)} className='btn btn-danger'>Удалить</button></td>
-                <td>  <button onClick={(e) => props.editCar(item)} className='btn btn-dark mr-3'>Изменить</button></td>
+                <td> <button onClick={(e) => props.editCar(item)}  className='btn btn-dark mr-3'>Изменить</button></td>
               
             </tr>
         ))}
