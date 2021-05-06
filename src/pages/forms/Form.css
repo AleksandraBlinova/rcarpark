@@ -111,7 +111,7 @@ color:red;
   .form-input-btn {
     width: 80%;
     height: 50px;
-    margin-top: 10px;
+    margin-top: 20px;
     border-radius: 2px;
     background: linear-gradient(
       90deg,
@@ -142,9 +142,23 @@ color:red;
     text-align: center;
   }
   
+  
+  .form-input-success {
+    font-size: 18px;
+    margin-top: 2rem;
+    color: rgb(170, 192, 71);
+    width: 80%;
+    text-align: center;
+  }
+  
   .form-input-login a {
     text-decoration: none;
     color: #5c78f7;
     font-weight: 600;
     font-size: 14px;
+  }
+
+  .ErrorText{
+    color: red;
+    padding-top: 15px;
   }

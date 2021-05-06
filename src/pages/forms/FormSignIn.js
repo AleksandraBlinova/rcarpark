@@ -1,78 +1,80 @@
-import React, { useState } from 'react';
-import './Form.css';
+import React, { useState } from "react";
 import axios from 'axios';
+import { result } from "lodash";
+import FormSuccessLog from './FormSuccessLog';
 
-const FormSignIn = () => {
-
-
-  const [errors, setErrors] = useState([]);
-
-  const handleSubmit = (e) => {
-      e.preventDefault();
-      const value = { "email": "user@mail.com", "password": "Aa123456!" };
-     
-      axios.post(
-          'http://localhost:58475/api/Account/Login', value, { withCredentials: true }
-      )
-          .then((response) => {
-              typeof response.data.error !== "undefined" && setErrors(response.data.error)
-          })
-          .catch(console.error);
-  };
+const FormSignIn = ({ errors, email, password, setPassword, setEmail}) => {
+  
+   
+    
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+        
+    };
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+        
+    };
 
 
-return (
-   <div className="form-container">
-   <img src="mobile_ksp_1800x809_design.jpg" alt="promo" className="form-img"/>
-            {errors}
-            {/* {showErrors()} */}
-            {errors.forEach(({ errorValue, index }) => (
-                <div className="AuthText" key={"error"+index}>
-                    {errorValue}
-                </div>
-            ))}
-            <div className="form-content-right">
-            <form className="form" onSubmit={handleSubmit}>
-            <h1>Авторизация</h1>
-            <div className="form-inputs">
-            <label htmlFor='email' 
-            className='form-label'>
-            Email
-            </label>
-            <input
-            type="email"
-            name="email"
-            className='form-input'
-            placeholder="Введите ваш email" 
-            />
+
+    return (
+        <div className="form-content-right">
+        
+        <form className="form" >
+    
+        <h1>Вход</h1>
+        <div className="form-inputs">
+        <label htmlFor='email' 
+        className='form-label'>
+       Email
+        </label>
+        <input
+        type="email"
+         name="email"
+          className='form-input'
+          placeholder="Введите ваш email" 
+          value={email}
+          onChange={handleEmailChange}/>
          
         </div>
 
-            <div className="form-inputs">
-            <label htmlFor='password' 
-            className='form-label'>
-            Пароль
-            </label>
-            <input
-            type="password"
-            name="password"
-            className='form-input'
-            placeholder="Пароль" 
-            />
-          
-            
+        <div className="form-inputs">
+        <label htmlFor='password' 
+        className='form-label'>
+       Пароль
+        </label>
+        <input
+        type="password"
+         name="password"
+          className='form-input'
+          placeholder="Пароль" 
+          value={password}
+          onChange={handlePasswordChange}/>
+        
         </div>
-               
-        <button className="form-input-btn" type="submit" href='/si'>Войти</button>
+       <div className="ErrorText">
+        {errors}
+
+        {errors.forEach(({ errorValue, index }) => (
+            <div  key={"error"+index}>
+                {errorValue}
+            </div>
+        ))}
+        </div>
+       
+        <button className="form-input-btn" type="submit">Войти</button>
         <span className="form-input-login">
         Вернуться на страницу регистрации можно<a href ="/signin"> здесь</a>
        
         </span>
-            </form>
-            </div>
-            <a href='/' className="close-btn">x</a>
+       
+        </form>
+       
+            
         </div>
-);
+       
+  );
 };
 
 export default FormSignIn;

@@ -7,7 +7,9 @@ import axios from 'axios'
 
 const Form = () => {
     const [isSubmitted, setIsSubmitted] =  useState(false);
+   
     const [errors, setErrors] = useState([]);
+
     function submitForm({username, email, password, password2}) {
         const values = {
             username: username,
@@ -27,6 +29,7 @@ const Form = () => {
         setIsSubmitted(true);
         
     }
+   
     return (
 <>
     <div>
@@ -36,6 +39,7 @@ const Form = () => {
           <a href='/' className="close-btn">x</a>
         {!isSubmitted ? <Formsignup submitForm=
             {submitForm} /> : <FormSuccess />}
+           
         </div>
     </div>
 
