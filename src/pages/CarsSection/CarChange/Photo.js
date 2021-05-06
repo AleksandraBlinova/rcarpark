@@ -43,25 +43,22 @@ const BootstrapInput = withStyles((theme) => ({
  
 
 
-const Photo = ({photo, setPhoto }) => {
-
-  const handleChange = (event) => {
-    setPhoto(event.target.value);
-  };
+  const Photo = ({ photo, setPhoto }) => {
+    const handleChange = (event) => {
+      setPhoto(event.target.files[0]);
+    };
+ 
     return (
-        <div>
-        
-        <div className='label'>
-        <FormControl value={photo}  onChange={handleChange}>
-        <InputLabel htmlFor="demo-customized-textbox">Фото</InputLabel>
-        <BootstrapInput id="demo-customized-textbox" />
-        <FormHelperText>Путь расположения фото автомобиля</FormHelperText>
-        </FormControl>
+      <div>
+        <div className="label">
+          <FormControl value={photo} onChange={handleChange}>
+            <InputLabel htmlFor="demo-customized-textbox">Фото</InputLabel>
+            <BootstrapInput id="demo-customized-textbox" type="file"  accept="image/*,.jpeg,.jpg"/>
+            <FormHelperText>Путь расположения фото автомобиля</FormHelperText>
+          </FormControl>
         </div>
-
-            
-        </div>
-    )
-}
-
-export default Photo
+      </div>
+    );
+  };
+  
+  export default Photo;

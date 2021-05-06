@@ -17,6 +17,7 @@ function CarChange({ currentcar, editCar }) {
   const [currentIdC, setCurrentColorId] = useState("");
   const [currentPrice, setCurrentPrice] = useState("");
   const [currentReleaseYear, setCurrentReleaseYear] = useState("");
+  
   const [car, setCar] = useState("");
 
   useEffect(() => {
@@ -27,8 +28,9 @@ function CarChange({ currentcar, editCar }) {
     setCurrentColorId(currentcar.colorid);
     setCurrentPrice(currentcar.price);
     setCurrentReleaseYear(currentcar.releaseYear);
+   
   }, [currentcar]);
-
+console.log(currentcar)
   const handleSubmit = (e) => {
     e.preventDefault();
     const values = {
@@ -36,10 +38,13 @@ function CarChange({ currentcar, editCar }) {
       colorFk: currentIdC,
       price: currentPrice,
       releaseYear: currentReleaseYear
+      
      
      
     };
-    console.log(values)
+  
+
+
     axios
       .put(`http://localhost:58475/api/cars/${currentcar.id}`, values, {
         withCredentials: true,
@@ -69,7 +74,7 @@ function CarChange({ currentcar, editCar }) {
   const handleSetCurrentReleaseYear = (data) => {
     setCurrentReleaseYear(data);
   };
-
+ 
 
   return (
     <React.Fragment>
@@ -107,7 +112,7 @@ function CarChange({ currentcar, editCar }) {
               price={currentPrice}
               setPrice={handleSetCurrentPrice}
             />
-
+           
             <div>
               <button className="btn-1" type="submit">
                 Применить
