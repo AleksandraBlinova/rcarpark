@@ -12,7 +12,7 @@ axios.defaults.withCredentials = true
 
 
 
-const Cars = () => {
+const Cars = (props) => {
     const [cars, setCars] = useState([]);
     const addCar = (car) => setCars([...cars, car]);
     const removeCar = (removeId) => setCars(cars.filter(({ Id }) => Id !== removeId));
@@ -25,7 +25,7 @@ const Cars = () => {
                model1: car.modelFkNavigation.model1, color1: car.colorFkNavigation.color1, 
                modelid:car.modelFkNavigation.id, colorid:car.colorFkNavigation.id })
     }
-   
+    console.log(props.role)
  
     return (
       <div>
@@ -36,15 +36,19 @@ const Cars = () => {
           removeCar={removeCar}
         cars={cars}
         editCar={editCar}
-           />
+        role={props.role}
 
+           />
+           {(props.role===2) &&
        <CarCreate  cars={cars}
        setCars={setCars}/>
-       
+           }
+           {(props.role===2) &&
        <CarChange 
        editCar={editCar}  
        cars={cars} 
        currentcar={currentcar}/>
+           }
         <Footer />
       </div>
     );

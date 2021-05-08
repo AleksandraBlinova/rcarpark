@@ -9,6 +9,7 @@ import Contacts from './pages/ContactsSection/Contacts'
 import Cars from './pages/CarsSection/Cars'
 import FormL from './pages/forms/FormL'
 import FormLogOut from './pages/forms/FormLogOut'
+import Liked from './pages/LikeSection/Liked'
 
 function App() {
 
@@ -18,18 +19,18 @@ function App() {
     setRole(data);
   };
 
- 
+  
   return (
  
     <Router>
      <Navbar role={role} setRole={changeRole}/>
-     <Switch>
+     <Switch >
      <Route path="/" exact component={Home} /> 
      <Route path="/offers" component={Offers} />
      <Route path="/contacts" component={Contacts} />
      <Route path="/signin" component={form} />
-     <Route path="/models" component={Cars} />
-     <Route path="/login" component={FormL} />
+     <Route path="/models" render={()=><Cars role={role} setRole={changeRole}/>}/>
+     <Route path="/login" render={()=><FormL role={role} setRole={changeRole}/>}/>
      <Route path="/logout" component={FormLogOut} />
      
      </Switch>

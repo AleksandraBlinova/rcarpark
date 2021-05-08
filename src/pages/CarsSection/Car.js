@@ -8,11 +8,11 @@ import PropTypes from 'prop-types';
 
 
 
-const Car = ({ cars, setCars, removeCar, editCar, currentcar, setcurrentCar }) => {
+const Car = ({ cars, setCars, removeCar, editCar, currentcar, setcurrentCar, role }) => {
     
     const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState('')
-   
+    
     useEffect(() => {
         setLoading(true);
         axios({
@@ -57,8 +57,8 @@ const Car = ({ cars, setCars, removeCar, editCar, currentcar, setcurrentCar }) =
                 handleChangeSearch={(value) => setSearch(value)}
             />
             
-            <Table search={search} data={cars} deleteItem={deleteItem} editCar={editCar} currentcar={currentcar}
-            setcurrentCar={setcurrentCar}/>
+            <Table search={search} data={cars} deleteItem={deleteItem} editCar={editCar} currentcar={currentcar} 
+            setcurrentCar={setcurrentCar} role={role}/>
             
           
         </React.Fragment>

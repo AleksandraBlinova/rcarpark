@@ -7,12 +7,13 @@ import axios from 'axios'
 
 
 
-const FormL = () => {
+const FormL = (props) => {
    
   const [isLog, setLog] =  useState(false);
   const [errors, setErrors] = useState([]);
   const [email, setEmail] =  useState('');
   const [password, setPassword] = useState('');
+  const [NameofUser, setNameofUser] = useState('');
 
   
   const handleSubmit = (e) => {
@@ -24,9 +25,21 @@ const FormL = () => {
     )
         .then((response) => {
             typeof response.data.error !== "undefined" && setErrors(response.data.error)
-            console.log(response.data.error)
+            
            if(!response.data.error)
-          setLog(true);
+           {
+            
+            setLog(true);
+            setNameofUser(response.data.message);
+            console.log(response.data.message==='Выполнен вход пользователем: admin@mail.com')
+             if (response.data.message==='Выполнен вход пользователем: admin@mail.com')  
+            props.setRole(2)
+            else
+            props.setRole(1);
+                    
+           }
+         
+           
             
         })
         .catch(console.error);
@@ -41,6 +54,8 @@ const handleSetPassword = (data) => {
   setPassword(data);
 };
 
+
+
     return (
 
     <div>
@@ -51,8 +66,8 @@ const handleSetPassword = (data) => {
           {!isLog ? <FormSignIn 
            errors={errors} setErrors={setErrors} email={email} password={password}
            setPassword={handleSetPassword} setEmail={handleSetEmaill} 
-           
-           /> : <FormSuccessLog />}
+          
+           /> : <FormSuccessLog NameofUser={NameofUser}/>}
         </div>
     </div>
 

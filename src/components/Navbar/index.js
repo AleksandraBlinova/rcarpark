@@ -7,10 +7,7 @@ import { result } from 'lodash';
 
 const Navbar = (props) => {
 
-   const changeRole = () => {
-    props.setRole(0)
-   };
-  
+ console.log('f', props.role)
    const [errors, setErrors] = useState([]);
    const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,6 +42,11 @@ const Navbar = (props) => {
           <NavLink to="/contacts" >
             Контакты
           </NavLink>
+          {(props.role===1) &&
+          <NavLink to="/liked"  >
+          ❤
+        </NavLink>
+          }
         </NavMenu>
         
         {(props.role===0) &&

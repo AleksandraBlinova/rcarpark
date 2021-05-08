@@ -4,7 +4,7 @@ import { MDBTable, MDBTableBody, MDBTableHead  } from 'mdbreact';
 import { Link } from 'react-router-dom';
 
 function Table (props) {
-    
+   
     return (
        
         <div className='container'>
@@ -55,8 +55,12 @@ function Table (props) {
                 <td >{item.colorFkNavigation.color1}</td>
                 <td >{item.price}</td>
                 <td >{item.releaseYear}</td>
+                {(props.role===2) &&
                 <td>  <button onClick={(e) => props.deleteItem(item.id)} className='btn btn-danger'>Удалить</button></td>
+                }
+                {(props.role===2) &&
                 <td> <button onClick={(e) => props.editCar(item)}  className='btn btn-dark mr-3'>Изменить</button></td>
+                }
               
             </tr>
         ))}

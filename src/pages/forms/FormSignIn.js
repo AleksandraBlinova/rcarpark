@@ -17,7 +17,7 @@ const FormSignIn = ({ errors, email, password, setPassword, setEmail}) => {
     };
 
 
-
+    
     return (
         <div className="form-content-right">
         
@@ -63,7 +63,7 @@ const FormSignIn = ({ errors, email, password, setPassword, setEmail}) => {
         ))}
         </div>
        
-        <button className="form-input-btn" type="submit">Войти</button>
+        <button className="form-input-btn" type="submit" >Войти</button>
         <span className="form-input-login">
         Вернуться на страницу регистрации можно<a href ="/signin"> здесь</a>
        
