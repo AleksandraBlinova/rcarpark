@@ -1,9 +1,32 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink
 } from './NavbarElements'
+import axios from 'axios'
+import { result } from 'lodash';
 
 
-const Navbar = () => {
+const Navbar = (props) => {
+
+   const changeRole = () => {
+    props.setRole(0)
+   };
+  
+   const [errors, setErrors] = useState([]);
+   const handleSubmit = (e) => {
+    e.preventDefault();
+   
+    axios.post(
+        'http://localhost:58475/api/Account/LogOff', { withCredentials: true }
+    )
+        .then((response) => {
+            typeof response.data.error !== "undefined" && setErrors(response.data.error)
+           if(response.data.message==='Выполнен выход.')
+           props.setRole(0)
+            
+        })
+        .catch(console.error);
+
+};
   return(
     <>
       <Nav>
@@ -22,11 +45,19 @@ const Navbar = () => {
           <NavLink to="/contacts" >
             Контакты
           </NavLink>
-          
         </NavMenu>
-        <NavBtn>
-        <NavBtnLink to="/signin">Войти</NavBtnLink>
-      </NavBtn>
+        
+        {(props.role===0) &&
+          <NavBtn>
+          <NavBtnLink to="/signin">Войти</NavBtnLink>
+          </NavBtn>
+        }
+        {(props.role===1 || props.role===2) &&
+          <NavBtn onClick={handleSubmit} >
+          <NavBtnLink to="/logout">Выйти</NavBtnLink>
+          </NavBtn>
+        }
+       
       </Nav>
     </>
   );
