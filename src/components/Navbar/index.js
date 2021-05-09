@@ -5,9 +5,19 @@ import axios from 'axios'
 import { result } from 'lodash';
 
 
-const Navbar = (props) => {
 
- console.log('f', props.role)
+
+import Toggle from '../Toggler'
+import {ThemeProvider} from "styled-components";
+import { lightTheme, darkTheme } from '../Themes';
+import {useDarkMode} from '../useDarkMode';
+import { GlobalStyles } from '../GlobalStyles';
+
+
+const Navbar = (props) => {
+  const [theme, themeToggler, mountedComponent] = useDarkMode();
+  const themeMode = theme === 'light' ? lightTheme : darkTheme;
+  
    const [errors, setErrors] = useState([]);
    const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,12 +34,16 @@ const Navbar = (props) => {
         .catch(console.error);
 
 };
+if(!mountedComponent) return <div/>
   return(
-    <>
+    <ThemeProvider theme={themeMode}>
+
+    <GlobalStyles />
       <Nav>
+      <Toggle theme={theme} toggleTheme={themeToggler} />
         <NavLink to ="/">
          <img src="favicon.ico"
-         style={{width: 60, height: 60}} alt="logo"/>
+         style={{width: 55, height: 55}} alt="logo"/>
         </NavLink>
         <Bars />
         <NavMenu>
@@ -42,11 +56,7 @@ const Navbar = (props) => {
           <NavLink to="/contacts" >
             Контакты
           </NavLink>
-          {(props.role===1) &&
-          <NavLink to="/liked"  >
-          ❤
-        </NavLink>
-          }
+         
         </NavMenu>
         
         {(props.role===0) &&
@@ -61,7 +71,7 @@ const Navbar = (props) => {
         }
        
       </Nav>
-    </>
+    </ThemeProvider>
   );
 };
 

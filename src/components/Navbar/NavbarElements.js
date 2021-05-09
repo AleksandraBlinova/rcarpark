@@ -6,10 +6,10 @@ import styled from 'styled-components'
 
 export const Nav =styled.nav`
   background: #000;
-  height: 80px;
+  height: 85px;
   display: flex;
   justify-content: space-between;
-  padding: 2rem calc((100vw - 1400px)/2);
+  padding: 2rem calc((95vw - 1400px)/2);
   font-size: 18px;
   `
 
@@ -43,7 +43,7 @@ export const Nav =styled.nav`
       transform: translate(-100%, 75%);
       font-size: 1.8rem;
       cursor: pointer;
-      font-size: 18px;
+      font-size: 17px;
   }
   `
 
@@ -63,7 +63,7 @@ export const Nav =styled.nav`
   
   display: flex;
   align-items: center;
-  margin-right: -24px;
+  margin-right: 40px;
  
   @media screen and (max-width: 768px) {
     display:none;

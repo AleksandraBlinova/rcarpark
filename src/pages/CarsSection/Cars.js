@@ -13,6 +13,8 @@ axios.defaults.withCredentials = true
 
 
 const Cars = (props) => {
+
+ 
     const [cars, setCars] = useState([]);
     const addCar = (car) => setCars([...cars, car]);
     const removeCar = (removeId) => setCars(cars.filter(({ Id }) => Id !== removeId));
@@ -25,9 +27,9 @@ const Cars = (props) => {
                model1: car.modelFkNavigation.model1, color1: car.colorFkNavigation.color1, 
                modelid:car.modelFkNavigation.id, colorid:car.colorFkNavigation.id })
     }
-    console.log(props.role)
- 
+    
     return (
+     
       <div>
      
         <Car
@@ -51,6 +53,7 @@ const Cars = (props) => {
            }
         <Footer />
       </div>
+      
     );
   };
 

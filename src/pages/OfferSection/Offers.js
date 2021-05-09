@@ -5,8 +5,9 @@ import OfferSection from './OfferSection'
 
 function Offers() {
     return (
-      <div className='cards'>
+      <div >
         <h1 className='priv'>ВЫГОДНЫЕ ПРЕДЛОЖЕНИЯ</h1>
+        
         <div className='cards__container'>
           <div className='cards__wrapper'>
             <ul className='cards__items'>
