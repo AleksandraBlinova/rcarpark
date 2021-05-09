@@ -1,5 +1,5 @@
 table {
-    width: 100%
+    width: 100%;
 }
 
     table th {
@@ -22,10 +22,10 @@ table {
     background: #bcbcbc
 }
 
-.container {
+.container-table {
     
     width: 100%;
-    max-width: 1920px;
+    max-width: 2020px;
     height: 100%;
     padding: 0 120px;
     margin: 0 auto
