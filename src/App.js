@@ -23,7 +23,7 @@ import {useDarkMode} from './components/useDarkMode'
 
 function App() {
  
-  const [role, setRole] = useState(0)// 0 - guest; 1 - client; 2 - admin
+  const [role, setRole] = useState(2)// 0 - guest; 1 - client; 2 - admin
   
   const changeRole = (data) => {
     setRole(data);

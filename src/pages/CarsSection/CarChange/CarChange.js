@@ -6,9 +6,9 @@ import Color from "../CarChange/Color";
 import ReleaseYear from "../CarChange/ReleaseYear";
 import "./CarChange.css";
 import axios from "axios";
+import Availability from "./Availability";
 
 function CarChange({ currentcar, editCar }) {
-  
   const [models, setModel] = useState([]);
   const [colors, setColor] = useState([]);
   const [currentModel, setCurrentModel] = useState("");
@@ -16,8 +16,9 @@ function CarChange({ currentcar, editCar }) {
   const [currentIdM, setCurrentModelId] = useState("");
   const [currentIdC, setCurrentColorId] = useState("");
   const [currentPrice, setCurrentPrice] = useState("");
+  const [currentAvail, setCurrentAvail] = useState("");
   const [currentReleaseYear, setCurrentReleaseYear] = useState("");
-  
+
   const [car, setCar] = useState("");
 
   useEffect(() => {
@@ -28,7 +29,7 @@ function CarChange({ currentcar, editCar }) {
     setCurrentColorId(currentcar.colorid);
     setCurrentPrice(currentcar.price);
     setCurrentReleaseYear(currentcar.releaseYear);
-   
+    setCurrentAvail(currentcar.availability);
   }, [currentcar]);
 
   const handleSubmit = (e) => {
@@ -37,13 +38,9 @@ function CarChange({ currentcar, editCar }) {
       modelFk: currentIdM,
       colorFk: currentIdC,
       price: currentPrice,
-      releaseYear: currentReleaseYear
-      
-     
-     
+      releaseYear: currentReleaseYear,
+      availability: currentAvail,
     };
-  
-
 
     axios
       .put(`http://localhost:58475/api/cars/${currentcar.id}`, values, {
@@ -74,7 +71,9 @@ function CarChange({ currentcar, editCar }) {
   const handleSetCurrentReleaseYear = (data) => {
     setCurrentReleaseYear(data);
   };
- 
+  const handleSetCurrentAvail = (data) => {
+    setCurrentAvail(data);
+  };
 
   return (
     <React.Fragment>
@@ -112,7 +111,12 @@ function CarChange({ currentcar, editCar }) {
               price={currentPrice}
               setPrice={handleSetCurrentPrice}
             />
-           
+            <Availability
+              className="label"
+              availability={currentAvail}
+              setAvailability={handleSetCurrentAvail}
+            />
+
             <div>
               <button className="btn-1" type="submit">
                 Применить

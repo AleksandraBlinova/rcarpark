@@ -3,13 +3,10 @@ import "./Table.css";
 import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import { Link } from "react-router-dom";
 
-
 function Table(props) {
-  console.log(props.data.map(i=>(i.availability)))
   return (
     <div className="container-table">
-      
-      <MDBTable >
+      <MDBTable>
         <MDBTableHead>
           <tr>
             <th>№ Автомобиля</th>
@@ -19,13 +16,8 @@ function Table(props) {
             <th>Цена</th>
             <th>Год выпуска</th>
             <th>Доступность</th>
-            {(props.role === 2 ) && (
-            <th></th>
-            )}
-            {(props.role === 2 ) && (
-            <th></th>
-            )}
-          
+            {props.role === 2 && <th></th>}
+            {props.role === 2 && <th></th>}
           </tr>
         </MDBTableHead>
         <MDBTableBody>
@@ -50,8 +42,9 @@ function Table(props) {
                 <td>{item.colorFkNavigation.color1}</td>
                 <td>{item.price}</td>
                 <td>{item.releaseYear}</td>
-                <td>{item.availability}</td>
-                
+
+                <td>{item.availability ? "доступен" : "отсутствует"}</td>
+
                 {props.role === 2 && (
                   <td>
                     {" "}
@@ -78,7 +71,6 @@ function Table(props) {
             ))}
         </MDBTableBody>
       </MDBTable>
-  
     </div>
   );
 }

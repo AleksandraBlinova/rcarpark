@@ -7,6 +7,7 @@ import Photo from "./Photo";
 import Color from "./Color";
 import ReleaseYear from "./ReleaseYear";
 import PropTypes from "prop-types";
+import Availability from "./Availability";
 
 function CarCreate(props) {
   const [models, setModel] = useState([]);
@@ -18,11 +19,10 @@ function CarCreate(props) {
   const [releaseYear, setReleaseYear] = useState("");
   const [currentIdM, setCurrentModelId] = useState("");
   const [currentIdC, setCurrentColorId] = useState("");
+  const [availability, setAvail] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    
 
     const values = {
       modelFk: currentIdM,
@@ -30,14 +30,16 @@ function CarCreate(props) {
       price: price,
       releaseYear: releaseYear,
       plantFk: 7,
-      availability: true,
+      availability: availability,
       imageUrl: photo,
     };
-    
+
     const file = new FormData();
     file.append("imageUrl", photo);
 
-    Object.entries({ ...values }).map(([key, value]) => file.append(key, value));
+    Object.entries({ ...values }).map(([key, value]) =>
+      file.append(key, value)
+    );
     axios
       .post("http://localhost:58475/api/cars/", file, {
         withCredentials: true,
@@ -53,6 +55,9 @@ function CarCreate(props) {
   };
   const handleSetColor = (data) => {
     setColor(data);
+  };
+  const handleSetAvail = (data) => {
+    setAvail(data);
   };
 
   const handleSetPhoto = (data) => {
@@ -94,6 +99,12 @@ function CarCreate(props) {
             />
 
             <Price className="label" price={price} setPrice={setPrice} />
+
+            <Availability
+              className="label"
+              availability={availability}
+              setAvail={handleSetAvail}
+            />
 
             <Photo className="label" photo={photo} setPhoto={handleSetPhoto} />
             <div>
