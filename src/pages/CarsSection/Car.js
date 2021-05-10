@@ -10,55 +10,63 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 
 
 const Car = ({
-  cars,
-  setCars,
-  removeCar,
-  editCar,
-  currentcar,
-  setcurrentCar,
-  role,
+  cars,//все машины
+  setCars,// метод для загрузки в таблицу всех машин
+  removeCar,//удалить машинку
+  editCar,//изменить машинку
+  currentcar,// текущая (выбранная) машинка
+  setcurrentCar, // подгрузить данные для выбранной машинки
+  role,//роль (менеджер, гость или клиент)
 }) => {
-  const [loading, setLoading] = useState(false);
-  const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);//устанавливаем false для загрузочной полосы
+  const [search, setSearch] = useState("");//для поиска по машинкам
  
   useEffect(() => {
-    setLoading(true);
-    axios({
+    setLoading(true);//устанавливаем true для загрузочной полосы
+    axios({//оправляем запрос на получение машинок
       method: "GET",
       url: "http://localhost:58475/api/cars/",
       headers: {
-        "content-type": "application/json",
+        "content-type": "application/json", withCredentials: true,
       },
     })
       .then((response) => {
-        setCars(response.data);
-        setLoading(false);
+        setCars(response.data);//используем метод setCars для подгрузки авто в таблицу 
+        setLoading(false);//устанавливаем false для загрузочной полосы (она больше не нужна)
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error);// если есть ошибки - выводим
         setLoading(false);
       });
   }, []);
 
 
-  const deleteItem = (id) => {
+  const deleteItem = (id) => {//удаление машинки
     //e.stopPropagation();
-    axios
-      .delete(`http://localhost:58475/api/cars/${id}`)
-      .then((response) => {
-        response.status = 204 && removeCar(id);
-      })
-      .catch(console.error);
+    axios({//посылаем запрос
+      method: "DELETE",
+      url: `http://localhost:58475/api/cars/${id}`,
+      headers: {
+        "content-type": "application/json", withCredentials: true,
+      },
+     
+    })
+    .then(() => {
+      removeCar(id);//используем метод removeCar и передаем туда айди
+   })
+   .catch(console.error);
   };
 
-  const showLoading = () =>
+  const showLoading = () =>//показать загрузочную полосу (компонент LinearProgress material ui)
     loading ? (
       <div>
         <LinearProgress color="secondary" />
       </div>
     ) : null;
 
-  
+  //показать загрузочную полосу (компонент LinearProgress material ui)
+  //TableSearch - для поиска по машинам
+  //Table - таблица с машинами
   return (
     <React.Fragment>
       <h1 className="h1">Модельный ряд</h1>

@@ -34,8 +34,9 @@ function Color ({setColor, colors, setCurrentColor, currentColor, currentIdC, se
       axios({
           "method": "GET",
           "url": "http://localhost:58475/api/colors/",
+        
           "headers": {
-              "content-type": "application/json",
+              "content-type": "application/json",  withCredentials: true,
           }
       })
           .then((response) => {

@@ -26,16 +26,19 @@ function Color ({setColor, colors, setCurrentColor, currentColor, currentIdC, se
   
     const handleChange = (event) => {
       setCurrentColor(event.target.value);
-      setCurrentColorId(event.target.value);
+      
+      
     };
 
     useEffect(() => {
      
       axios({
           "method": "GET",
+          
           "url": "http://localhost:58475/api/colors/",
           "headers": {
               "content-type": "application/json",
+              withCredentials: true,
           }
       })
           .then((response) => {
@@ -55,10 +58,10 @@ function Color ({setColor, colors, setCurrentColor, currentColor, currentIdC, se
           labelId="demo-mutiple-name-label"
           id="demo-mutiple-name"
           input={<Input />}
-          value={currentColor, currentIdC}
+          value={currentColor}
           onChange={handleChange}
         >
-        {colors.map((car, index) => (<MenuItem key={index} value={car.color1, car.id}>{car.color1}</MenuItem>))}
+        {colors.map((car, index) => (<MenuItem key={index} value={car.color1}>{car.color1}</MenuItem>))}
         </Select>
 
       </FormControl>

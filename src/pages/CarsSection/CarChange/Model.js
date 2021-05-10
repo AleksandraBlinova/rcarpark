@@ -21,21 +21,22 @@ const useStyles = makeStyles((theme) => ({
   
   
 function Model ({setModel, models, currentModel, setCurrentModel, currentIdM, setCurrentModelId})  {
-    
+
   const classes = useStyles();
 
     const handleChange = (event) => {
-        setCurrentModel(event.target.value);
-        setCurrentModelId(event.target.value);
+      setCurrentModelId(event.target.value);
+      setCurrentModel(event.target.value);
     };
 
     useEffect(() => {
      
       axios({
           "method": "GET",
+          
           "url": "http://localhost:58475/api/models/",
           "headers": {
-              "content-type": "application/json",
+              "content-type": "application/json",withCredentials: true,
           }
       })
           .then((response) => {
@@ -56,14 +57,14 @@ function Model ({setModel, models, currentModel, setCurrentModel, currentIdM, se
           labelId="demo-mutiple-name-label"
           id="demo-mutiple-name"
           input={<Input />}
-          value={currentModel, currentIdM}
+          value={currentIdM}
           onChange={handleChange}
-          
+        
         >
         
         
-        {models.map((car, index) => (<MenuItem key={index}  value={car.model1, car.id}>{car.model1}</MenuItem>))}
-        
+        {models.map((car, index) => (<MenuItem key={index}  value={car.id} >{car.model1}</MenuItem>))}
+       
         
         </Select>
 

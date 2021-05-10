@@ -36,9 +36,10 @@ function Model({
   useEffect(() => {
     axios({
       method: "GET",
+     
       url: "http://localhost:58475/api/models/",
       headers: {
-        "content-type": "application/json",
+        "content-type": "application/json", withCredentials: true,
       },
     })
       .then((response) => {
@@ -61,7 +62,7 @@ function Model({
           onChange={handleChange}
         >
           {models.map((car, index) => (
-            <MenuItem key={index} value={(car.model1, car.id)}>
+            <MenuItem key={index} value={car.model1, car.id}>
               {car.model1}
             </MenuItem>
           ))}

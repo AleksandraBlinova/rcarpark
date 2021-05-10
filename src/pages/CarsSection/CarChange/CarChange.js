@@ -10,8 +10,9 @@ import Availability from "./Availability";
 
 function CarChange({ currentcar, editCar }) {
   const [models, setModel] = useState([]);
+  const [modelscar, setModelcar] = useState([]);
   const [colors, setColor] = useState([]);
-  const [currentModel, setCurrentModel] = useState("");
+  const [currentModel, setCurrentModel] = useState('');
   const [currentColor, setCurrentColor] = useState("");
   const [currentIdM, setCurrentModelId] = useState("");
   const [currentIdC, setCurrentColorId] = useState("");
@@ -20,6 +21,7 @@ function CarChange({ currentcar, editCar }) {
   const [currentReleaseYear, setCurrentReleaseYear] = useState("");
 
   const [car, setCar] = useState("");
+ 
 
   useEffect(() => {
     setCar(currentcar);
@@ -31,6 +33,10 @@ function CarChange({ currentcar, editCar }) {
     setCurrentReleaseYear(currentcar.releaseYear);
     setCurrentAvail(currentcar.availability);
   }, [currentcar]);
+  
+  
+  
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,20 +48,37 @@ function CarChange({ currentcar, editCar }) {
       availability: currentAvail,
     };
 
+
     axios
       .put(`http://localhost:58475/api/cars/${currentcar.id}`, values, {
         withCredentials: true,
       })
       .then((response) => {
-        response.status === 204 && editCar(response.data);
+        const carForedit = {
+          id: currentcar.id, price: values.price,releaseYear: values.releaseYear, 
+          modelFkNavigation:{model1: currentModel},colorFkNavigation:{color1: currentColor}, modelid: values.modelFk, colorid: values.colorFk,availability: values.availability
+          };
+        
+        editCar(carForedit)
       })
       .catch(console.error);
   };
+  
   const handleSetModel = (data) => {
     setModel(data);
   };
+
+  
   const handleSetCurrentModel = (data) => {
-    setCurrentModel(data);
+   setCurrentModel(models.find(item=>item.id===data).model1);
+   //console.log(models.find(item=>item.id===data).model1);
+    
+    
+  };
+  const handleSetCurrentModelId = (data) => {
+    setCurrentModelId(data)
+    
+    
   };
 
   const handleSetCurrentColor = (data) => {
@@ -88,7 +111,8 @@ function CarChange({ currentcar, editCar }) {
               models={models}
               setModel={handleSetModel}
               currentIdM={currentIdM}
-              setCurrentModelId={setCurrentModelId}
+              setCurrentModelId={handleSetCurrentModelId}
+             
             />
 
             <Color

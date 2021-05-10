@@ -40,14 +40,29 @@ function CarCreate(props) {
     Object.entries({ ...values }).map(([key, value]) =>
       file.append(key, value)
     );
+
     axios
-      .post("http://localhost:58475/api/cars/", file, {
+      .post(`http://localhost:58475/api/cars/`, file, {
         withCredentials: true,
       })
       .then((response) => {
-        response.status === 201 && props.addCar(response.data);
+        //console.log(response)
+        props.addCar(response.data);
       })
       .catch(console.error);
+    // axios({
+    //   url: "https://localhost:44396/api/cars/",
+    //   method: "post",
+    //   headers: {
+    //     withCredentials: true,
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    //   data: file,
+    // })
+    //   .then((response) => {
+    //     props.addCar(response.data);
+    //   })
+    //   .catch(console.error);
   };
 
   const handleSetModel = (data) => {
